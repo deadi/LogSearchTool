@@ -1,4 +1,3 @@
-```powershell
 # -------------------------------------------------------------------
 # logFunction1.ps1
 # Logsuche für DMSQueue-Log
@@ -42,5 +41,3 @@ function Search-Log1 {
         }
     }
 }
-
-```

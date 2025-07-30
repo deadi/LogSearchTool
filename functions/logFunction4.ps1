@@ -1,4 +1,3 @@
-```powershell
 # -------------------------------------------------------------------
 # logFunction4.ps1
 # Logsuche für Printing-Logs
@@ -35,5 +34,3 @@ function Search-Log4 {
         }
     }
 }
-
-```

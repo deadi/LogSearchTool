@@ -1,4 +1,3 @@
-```powershell
 # -------------------------------------------------------------------
 # logFunction5.ps1
 # Logsuche für Mutation.Deamon
@@ -36,5 +35,3 @@ function Search-Log5 {
         }
     }
 }
-
-```

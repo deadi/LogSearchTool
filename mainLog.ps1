@@ -1,4 +1,3 @@
-```powershell
 # ------------------------------------------------------------------------------
 # mainLog.ps1
 # Einstiegspunkt für die Logsuche
@@ -39,5 +38,3 @@ Search-Log6 -LogDir $logDir6
 # Endmeldung
 Write-Host "`n--- ENDE Logsuche: $($startDate.ToString('yyyy-MM-dd')) bis $($endDate.ToString('yyyy-MM-dd')) ---`n" -ForegroundColor Cyan
 Write-Host "--- LOG Ergebnisse werden temporär gespeichert in $outputPath" -ForegroundColor Cyan
-
-```

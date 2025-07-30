@@ -1,4 +1,3 @@
-```bash
 # -------------------------------------------------------------------
 # logFunction6.ps1
 # Prüfung von DMSQueue-Fehlerdateien (.pdf.dmsqueue)
@@ -44,5 +43,3 @@ function Search-Log6 {
         }
     }
 }
-
-```

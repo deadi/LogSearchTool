@@ -1,4 +1,3 @@
-```bash
 # -------------------------------------------------------------------
 # logFunction2.ps1
 # Logsuche für Macos.Services.Dms-Log
@@ -37,5 +36,3 @@ function Search-Log2 {
         }
     }
 }
-
-```

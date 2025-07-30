@@ -12,7 +12,7 @@ function Search-Log1 {
     $searchTerms = @(
         "[WRN]",
         "[ERR]",
-        "[INF] listenting",
+        "[INF] listening",
         "[DBG]"
     )
     $excludeTerms = @(

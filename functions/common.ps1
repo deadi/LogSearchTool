@@ -8,7 +8,8 @@ function Search-Log {
     param(
         [string]$LogPath,
         [string]$SearchTerm,
-        [string[]]$ExcludeTerms = @()
+        [string[]]$ExcludeTerms = @(),
+        [string]$Caller = (Get-PSCallStack)[1].FunctionName
     )
 
     if (-not (Test-Path $LogPath)) {
@@ -40,8 +41,7 @@ function Search-Log {
     }
 
     if ($filteredMatches) {
-        $caller = (Get-PSCallStack)[1].FunctionName
-        $header = "[+] Treffer in '$LogPath' für '$SearchTerm' ($caller):"
+        $header = "[+] Treffer in '$LogPath' für '$SearchTerm' ($Caller):"
 
         Write-Host "`n$header" -ForegroundColor Green
         Add-Content -Path $outputPath -Value "`n$header"
@@ -49,6 +49,35 @@ function Search-Log {
         $filteredMatches | ForEach-Object {
             Write-Host $_.Line -ForegroundColor White
             Add-Content -Path $outputPath -Value $_.Line
+        }
+    }
+}
+
+# Generic wrapper used by Search-Log1..Search-Log5
+function Search-LogGeneric {
+    param(
+        [string]$LogDir,
+        [string]$LogPrefix,
+        [string[]]$SearchTerms,
+        [string[]]$ExcludeTerms = @(),
+        [string]$Caller = (Get-PSCallStack)[1].FunctionName
+    )
+
+    foreach ($date in $logDatesyyyyMMdd) {
+        $logPath = Join-Path $LogDir "$LogPrefix$($date).txt"
+
+        if (-not (Test-Path $logPath)) {
+            $msg = "[!] Logdatei nicht gefunden: $logPath"
+            Write-Host $msg -ForegroundColor Gray
+            Add-Content -Path $outputPath -Value $msg
+            continue
+        }
+
+        foreach ($term in $SearchTerms) {
+            if ($debugEnabled) {
+                Write-Host "[*] Suche '$term' in $logPath" -ForegroundColor Cyan
+            }
+            Search-Log -LogPath $logPath -SearchTerm $term -ExcludeTerms $ExcludeTerms -Caller $Caller
         }
     }
 }

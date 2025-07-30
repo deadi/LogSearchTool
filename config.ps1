@@ -1,4 +1,3 @@
-```powershell
 # ------------------------------------------------------------------------------
 # config.ps1
 # Zentrale Konfiguration für das Logsuche-Tool
@@ -62,6 +61,3 @@ $logPrefix5 = "Macos.WebPks.Mutation.Deamon_"
 
 # Ausgabeziel
 $outputPath = "L:\Bereich_Mitarbeitende\Ordner_Mitarbeitende\AE\_logtest\resultsLogSearchTool.txt"
-
-
-```

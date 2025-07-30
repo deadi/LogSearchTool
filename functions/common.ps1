@@ -1,4 +1,3 @@
-```bash
 # ------------------------------------------------------------------------------
 # common.ps1
 # Zentrale Suchfunktion für Loganalyse-Tool
@@ -53,5 +52,3 @@ function Search-Log {
         }
     }
 }
-
-```

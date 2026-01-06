@@ -1,6 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction6.ps1
-# PrÃ¼fung von DMSQueue-Fehlerdateien (.pdf.dmsqueue)
+# Prüfung von DMSQueue-Fehlerdateien (.pdf.dmsqueue)
+# C:\Macos\DMSQueue\Error
 # -------------------------------------------------------------------
 
 function Search-Log6 {
@@ -22,14 +23,16 @@ function Search-Log6 {
             $fileDateString = $matches[1]
 
             if ($logDatesyyyy_MM_dd -contains $fileDateString) {
-                $msg = "[+] Fehlerdatei fÃ¼r ${fileDateString}: $($file.Name)"
-                Write-Host $msg -ForegroundColor Green
+                $msg = "[+] Fehlerdatei für ${fileDateString}: $($file.Name)"
+                Write-Host "`n$msg" -ForegroundColor Yellow
                 Add-Content -Path $outputPath -Value $msg
 
                 try {
                     $content = Get-Content -Path $file.FullName -ErrorAction Stop
-                    Write-Host "`n[Inhalt: $($file.Name)]" -ForegroundColor Yellow
-                    Write-Host $content -ForegroundColor Gray
+                    if ($debugEnabled) {
+                        Write-Host "[*] Inhalt von $($file.Name):" -ForegroundColor Cyan
+                        Write-Host ($content -join "`n") -ForegroundColor Gray
+                    }
                 } catch {
                     $errMsg = "[!] Fehler beim Lesen der Datei: $($file.FullName)"
                     Write-Host $errMsg -ForegroundColor Red
@@ -38,7 +41,7 @@ function Search-Log6 {
             }
         } else {
             $msg = "[!] Kein Datum im Dateinamen erkannt: $($file.Name)"
-            Write-Host $msg -ForegroundColor Red
+            Write-Host "`n$msg" -ForegroundColor DarkGray
             Add-Content -Path $outputPath -Value $msg
         }
     }

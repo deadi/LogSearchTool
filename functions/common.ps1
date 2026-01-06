@@ -1,20 +1,19 @@
-# ------------------------------------------------------------------------------
+# -------------------------------------------------------------------
 # common.ps1
-# Zentrale Suchfunktion für Loganalyse-Tool
-# Wird von LogFunction1–5 verwendet
-# ------------------------------------------------------------------------------
+# Zentrale Suchfunktion fr Loganalyse-Tool
+# Wird von LogFunctionX verwendet
+# -------------------------------------------------------------------
 
 function Search-Log {
     param(
         [string]$LogPath,
         [string]$SearchTerm,
-        [string[]]$ExcludeTerms = @(),
-        [string]$Caller = (Get-PSCallStack)[1].FunctionName
+        [string[]]$ExcludeTerms = @()
     )
 
     if (-not (Test-Path $LogPath)) {
         $msg = "[!] Logdatei nicht gefunden: $LogPath"
-        Write-Host $msg -ForegroundColor Red
+        Write-Host "`n$msg" -ForegroundColor Red
         Add-Content -Path $outputPath -Value $msg
         return
     }
@@ -41,10 +40,17 @@ function Search-Log {
     }
 
     if ($filteredMatches) {
-        $header = "[+] Treffer in '$LogPath' für '$SearchTerm' ($Caller):"
-
+        $header = "[+] Treffer in '$LogPath' fr '$SearchTerm':"
         Write-Host "`n$header" -ForegroundColor Green
         Add-Content -Path $outputPath -Value "`n$header"
+
+        # Zusatz: Aufrufende Datei anzeigen
+        $caller = $MyInvocation.PSCommandPath
+        $callerName = Split-Path $caller -Leaf
+
+        $origin = "[Info] Aufgerufen durch: $callerName"
+        Write-Host $origin -ForegroundColor DarkYellow
+        Add-Content -Path $outputPath -Value $origin
 
         $filteredMatches | ForEach-Object {
             Write-Host $_.Line -ForegroundColor White
@@ -53,22 +59,22 @@ function Search-Log {
     }
 }
 
-# Generic wrapper used by Search-Log1..Search-Log5
-function Search-LogGeneric {
+function Invoke-LogSearchForDates {
     param(
         [string]$LogDir,
         [string]$LogPrefix,
         [string[]]$SearchTerms,
         [string[]]$ExcludeTerms = @(),
-        [string]$Caller = (Get-PSCallStack)[1].FunctionName
+        [string[]]$LogDates = $logDatesyyyyMMdd,
+        [string]$LogExtension = "txt"
     )
 
-    foreach ($date in $logDatesyyyyMMdd) {
-        $logPath = Join-Path $LogDir "$LogPrefix$($date).txt"
+    foreach ($date in $LogDates) {
+        $logPath = Join-Path $LogDir "$LogPrefix$date.$LogExtension"
 
         if (-not (Test-Path $logPath)) {
             $msg = "[!] Logdatei nicht gefunden: $logPath"
-            Write-Host $msg -ForegroundColor Gray
+            Write-Host $msg -ForegroundColor DarkGray
             Add-Content -Path $outputPath -Value $msg
             continue
         }
@@ -77,7 +83,7 @@ function Search-LogGeneric {
             if ($debugEnabled) {
                 Write-Host "[*] Suche '$term' in $logPath" -ForegroundColor Cyan
             }
-            Search-Log -LogPath $logPath -SearchTerm $term -ExcludeTerms $ExcludeTerms -Caller $Caller
+            Search-Log -LogPath $logPath -SearchTerm $term -ExcludeTerms $ExcludeTerms
         }
     }
 }

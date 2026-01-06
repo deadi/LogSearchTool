@@ -1,6 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction2.ps1
-# Logsuche für Macos.Services.Dms-Log
+# Logsuche fr Log2 mit eigenen Such- und Ausschlussbegriffen
+# C:\Macos\Macos.Services.Dms
 # -------------------------------------------------------------------
 
 function Search-Log2 {
@@ -10,13 +11,20 @@ function Search-Log2 {
     )
 
     $searchTerms = @(
+        "[DBG]",
         "[WRN]",
         "[ERR]",
-        "[FTL]"
-    )
-    $excludeTerms = @(
-        "Heartbeat"
+        "[INF] Now listening on"        
     )
 
-    Search-LogGeneric -LogDir $LogDir -LogPrefix $LogPrefix -SearchTerms $searchTerms -ExcludeTerms $excludeTerms -Caller $MyInvocation.MyCommand.Name
+    $excludeTerms = @(
+        "DbName: PKSPAT",
+        "connectionString: Server=S028004A;Database=PKSPAT;MultipleActiveResultSets=true;User Id=MACOS",
+        "connectionStringMaster: Server=S028004A;Database=PKSPATMA;MultipleActiveResultSets=true;User Id=MACOS",
+        "DbName: TKSPAT",
+        "connectionString: Server=S028004A;Database=TKSPAT;MultipleActiveResultSets=true;User Id=MACOS",
+        "connectionStringMaster: Server=S028004A;Database=TKSPATMA;MultipleActiveResultSets=true;User Id=MACOS",
+        "Heartbeat"
+    )
+    Invoke-LogSearchForDates -LogDir $LogDir -LogPrefix $LogPrefix -SearchTerms $searchTerms -ExcludeTerms $excludeTerms
 }

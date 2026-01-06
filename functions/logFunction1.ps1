@@ -1,6 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction1.ps1
-# Logsuche für DMSQueue-Log
+# Logsuche fr Log mit eigenen Such- und Ausschlussbegriffen
+# C:\Macos\Logs\DMSQueue
 # -------------------------------------------------------------------
 
 function Search-Log1 {
@@ -10,18 +11,22 @@ function Search-Log1 {
     )
 
     $searchTerms = @(
+        "[DBG]",
         "[WRN]",
         "[ERR]",
-        "[INF] listening",
-        "[DBG]"
+        "[INF] listenting"       
     )
     $excludeTerms = @(
         "DbName: PKSPAT",
+        "connectionString: Server=S028004A;Database=PKSPAT;MultipleActiveResultSets=true;User Id=MACOS",
+        "connectionStringMaster: Server=S028004A;Database=PKSPATMA;MultipleActiveResultSets=true;User Id=MACOS",
+        "DbName: TKSPAT",
+        "connectionString: Server=S028004A;Database=TKSPAT;MultipleActiveResultSets=true;User Id=MACOS",
+        "connectionStringMaster: Server=S028004A;Database=TKSPATMA;MultipleActiveResultSets=true;User Id=MACOS",
         "HttpMessageHandler expired after",
         "Starting HttpMessageHandler cleanup cycle with",
         "Ending HttpMessageHandler cleanup cycle after",
         "Heartbeat"
     )
-
-    Search-LogGeneric -LogDir $LogDir -LogPrefix $LogPrefix -SearchTerms $searchTerms -ExcludeTerms $excludeTerms -Caller $MyInvocation.MyCommand.Name
+    Invoke-LogSearchForDates -LogDir $LogDir -LogPrefix $LogPrefix -SearchTerms $searchTerms -ExcludeTerms $excludeTerms
 }

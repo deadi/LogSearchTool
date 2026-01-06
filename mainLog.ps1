@@ -1,15 +1,12 @@
 # ------------------------------------------------------------------------------
 # mainLog.ps1
-# Einstiegspunkt fÃ¼r die Logsuche
-# LÃ¤dt Konfiguration und Funktionen, ruft Logfunktionen auf
+# LogSearchTool
+# Einstiegspunkt für die Logsuche
+# Lädt Konfiguration und Funktionen, ruft Logfunktionen auf
 # ------------------------------------------------------------------------------
 
-param (
-    [datetime]$TestStartDate,
-    [datetime]$TestEndDate
-)
-
-# Konfiguration einbinden
+# Konfigurationsdateien einbinden (Pfaddefinitionen + Zeitbereich)
+. "$PSScriptRoot\config.core.ps1"
 . "$PSScriptRoot\config.ps1"
 
 # Funktionen laden
@@ -20,21 +17,29 @@ param (
 . "$PSScriptRoot\functions\logFunction4.ps1"
 . "$PSScriptRoot\functions\logFunction5.ps1"
 . "$PSScriptRoot\functions\logFunction6.ps1"
+. "$PSScriptRoot\functions\logFunction7.ps1"
+. "$PSScriptRoot\functions\logFunction8.ps1"
 
-# Log-Datei leeren
+#$outputPath leeren
 if (Test-Path $outputPath) { Clear-Content $outputPath }
 
-# Startmeldung
-Write-Host "`n--- START Logsuche: $($startDate.ToString('yyyy-MM-dd')) bis $($endDate.ToString('yyyy-MM-dd')) ---`n" -ForegroundColor Cyan
+# Ausgabe des ausgewählten Datumsbereichs
+Write-Host "`n--- START Logsuche: $($startDate.ToString('yyyy-MM-dd')) bis $($endDate.ToString('yyyy-MM-dd')) ---`n"
 
-# Logfunktionen aufrufen
+# Aufruf der jeweiligen Log-Funktionen
 Search-Log1 -LogDir $logDir1 -LogPrefix $logPrefix1
 Search-Log2 -LogDir $logDir2 -LogPrefix $logPrefix2
 Search-Log3 -LogDir $logDir3 -LogPrefix $logPrefix3
 Search-Log4 -LogDir $logDir4 -LogPrefix $logPrefix4
 Search-Log5 -LogDir $logDir5 -LogPrefix $logPrefix5
 Search-Log6 -LogDir $logDir6
+Search-Log7 -LogDir $logDir7 -LogPrefix $logPrefix7
+Search-Log8 -LogDir $logDir8 -LogPrefix $logPrefix8
 
-# Endmeldung
-Write-Host "`n--- ENDE Logsuche: $($startDate.ToString('yyyy-MM-dd')) bis $($endDate.ToString('yyyy-MM-dd')) ---`n" -ForegroundColor Cyan
-Write-Host "--- LOG Ergebnisse werden temporÃ¤r gespeichert in $outputPath" -ForegroundColor Cyan
+# Abschlussmeldung
+Write-Host "`n--- ENDE Logsuche: $($startDate.ToString('yyyy-MM-dd')) bis $($endDate.ToString('yyyy-MM-dd')) ---`n"
+
+Write-Host "--- LOG Ergebnise werden temporär gespeichert  in $outputPath"
+
+#sleep 10
+#pause

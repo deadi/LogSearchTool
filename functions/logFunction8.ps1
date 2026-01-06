@@ -1,10 +1,11 @@
 # -------------------------------------------------------------------
-# logFunction5.ps1
-# Logsuche für Log5 mit eigenen Such- und Ausschlussbegriffen
-# C:\Logs\Macos.Services.Deamon
+# logFunction8.ps1
+# Logsuche für Log8 mit eigenen Such- und Ausschlussbegriffen
+# neuer WebApi Proxy, seit Okt 2025
+# C:\Macos\Logs\WebApiProxy\Macos.WinPks.WebApi.Client.log20251002.txt
 # -------------------------------------------------------------------
 
-function Search-Log5 {
+function Search-Log8 {
     param(
         [string]$LogDir,
         [string]$LogPrefix
@@ -12,24 +13,22 @@ function Search-Log5 {
 
     $searchTerms = @(
         "[DBG]",
-        #"[WRN]",
-        "[WRN] Macos Mutations Service Version",
+        "[WRN]",
         "[ERR]",
-        "[INF]"       
+        "[INF]"
+        #"[INF] Now listening on"        
     )
-    $excludeTerms = @(
-        "In GetForFaktTextNoAndValidDate konnten keine Werte zu Berechnung des BVG Mindestlohn ermittelt werden",
-        "Warning in ConfigurationService => GetBvgMindestlohn - In der Master DB Tabelle LbiFakt konnte für NLbiFaktTxtNr 0 und GültigAb",
-        "BvgExchangeConnectorService",     
+
+    $excludeTerms = @(        
         "Heartbeat"
     )
-    
+
     foreach ($date in $logDatesyyyyMMdd) {
         $logPath = Join-Path $LogDir "$LogPrefix$date.txt"
 
         if (-not (Test-Path $logPath)) {
             $msg = "[!] Logdatei nicht gefunden: $logPath"
-            Write-Host "`n$msg" -ForegroundColor DarkGray
+            Write-Host $msg -ForegroundColor DarkGray
             Add-Content -Path $outputPath -Value $msg
             continue
         }

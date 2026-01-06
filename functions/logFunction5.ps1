@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------
 # logFunction5.ps1
-# Logsuche für Log5 mit eigenen Such- und Ausschlussbegriffen
+# Logsuche fr Log5 mit eigenen Such- und Ausschlussbegriffen
 # C:\Logs\Macos.Services.Deamon
 # -------------------------------------------------------------------
 
@@ -19,26 +19,9 @@ function Search-Log5 {
     )
     $excludeTerms = @(
         "In GetForFaktTextNoAndValidDate konnten keine Werte zu Berechnung des BVG Mindestlohn ermittelt werden",
-        "Warning in ConfigurationService => GetBvgMindestlohn - In der Master DB Tabelle LbiFakt konnte für NLbiFaktTxtNr 0 und GültigAb",
+        "Warning in ConfigurationService => GetBvgMindestlohn - In der Master DB Tabelle LbiFakt konnte fr NLbiFaktTxtNr 0 und GltigAb",
         "BvgExchangeConnectorService",     
         "Heartbeat"
     )
-    
-    foreach ($date in $logDatesyyyyMMdd) {
-        $logPath = Join-Path $LogDir "$LogPrefix$date.txt"
-
-        if (-not (Test-Path $logPath)) {
-            $msg = "[!] Logdatei nicht gefunden: $logPath"
-            Write-Host "`n$msg" -ForegroundColor DarkGray
-            Add-Content -Path $outputPath -Value $msg
-            continue
-        }
-
-        foreach ($term in $searchTerms) {
-            if ($debugEnabled) {
-                Write-Host "[*] Suche '$term' in $logPath" -ForegroundColor Cyan
-            }
-            Search-Log -LogPath $logPath -SearchTerm $term -ExcludeTerms $excludeTerms
-        }
-    }
+    Invoke-LogSearchForDates -LogDir $LogDir -LogPrefix $LogPrefix -SearchTerms $searchTerms -ExcludeTerms $excludeTerms
 }

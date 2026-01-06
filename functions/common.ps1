@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------
 # common.ps1
-# Zentrale Suchfunktion für Loganalyse-Tool
+# Zentrale Suchfunktion fr Loganalyse-Tool
 # Wird von LogFunctionX verwendet
 # -------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ function Search-Log {
     }
 
     if ($filteredMatches) {
-        $header = "[+] Treffer in '$LogPath' für '$SearchTerm':"
+        $header = "[+] Treffer in '$LogPath' fr '$SearchTerm':"
         Write-Host "`n$header" -ForegroundColor Green
         Add-Content -Path $outputPath -Value "`n$header"
 
@@ -55,6 +55,35 @@ function Search-Log {
         $filteredMatches | ForEach-Object {
             Write-Host $_.Line -ForegroundColor White
             Add-Content -Path $outputPath -Value $_.Line
+        }
+    }
+}
+
+function Invoke-LogSearchForDates {
+    param(
+        [string]$LogDir,
+        [string]$LogPrefix,
+        [string[]]$SearchTerms,
+        [string[]]$ExcludeTerms = @(),
+        [string[]]$LogDates = $logDatesyyyyMMdd,
+        [string]$LogExtension = "txt"
+    )
+
+    foreach ($date in $LogDates) {
+        $logPath = Join-Path $LogDir "$LogPrefix$date.$LogExtension"
+
+        if (-not (Test-Path $logPath)) {
+            $msg = "[!] Logdatei nicht gefunden: $logPath"
+            Write-Host $msg -ForegroundColor DarkGray
+            Add-Content -Path $outputPath -Value $msg
+            continue
+        }
+
+        foreach ($term in $SearchTerms) {
+            if ($debugEnabled) {
+                Write-Host "[*] Suche '$term' in $logPath" -ForegroundColor Cyan
+            }
+            Search-Log -LogPath $logPath -SearchTerm $term -ExcludeTerms $ExcludeTerms
         }
     }
 }

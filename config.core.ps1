@@ -10,7 +10,7 @@ $logDir1 = "C:\Macos\Logs\DMSQueue"
 $logDir2 = "C:\Macos\Macos.Services.Dms"
 $logDir3 = "C:\Macos\Macos.WebPks.UI.WebApi"        
 $logDir4 = "C:\Macos\Printing\Test\Logs"                   # PROD: C:\Macos\Printing\Logs  # Test: C:\Macos\Printing\Test\Logs
-#$logDir5 = "C:\Logs\Macos.Services.Deamon"                 # In Testumgebung keine Logs mehr seit 08.09.25
+$logDir5 = "C:\Logs\Macos.Services.Deamon" 
 $logDir6 = "C:\Macos\DMSQueue\Error"
 $logDir7 = "C:\Macos\Macos.Shared.Service.Dms"             # neuer Service seit 09.09.25
 $logDir8 = "C:\Macos\Logs\WebApiProxy"                     # neuer WebApiProxy seit Oktober 2025      
@@ -26,4 +26,5 @@ $logPrefix8 = "Macos.WinPks.WebApi.Client.log"
 
 # Ausgabeziel
 $outputPath = "C:\Users\macosService\Desktop\LogSearchTool\resultsLogSearchTool.txt"
+
 

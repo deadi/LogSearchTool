@@ -6,7 +6,7 @@ LogSearchTool durchsucht mehrere Windows-Logverzeichnisse in einem definierten Z
 
 - **Einstiegspunkt:** `mainLog.ps1`
 - **Zeitbereich:** `config.ps1` (interaktiv oder per Testparameter)
-- **Pfaddefinitionen:** `config.core.ps1`
+- **Pfaddefinitionen:** `config.core.ps1` (liest Umgebungsvariablen)
 - **Suchlogik:** `functions/common.ps1`
 - **Logquellen:** `functions/logFunction1.ps1` bis `functions/logFunction8.ps1`
 
@@ -14,17 +14,25 @@ LogSearchTool durchsucht mehrere Windows-Logverzeichnisse in einem definierten Z
 
 - Windows PowerShell
 - Zugriff auf die definierten Log-Verzeichnisse
-- Schreibrechte für das Ausgabeverzeichnis (`$outputPath` in `config.core.ps1`)
+- Schreibrechte für das Ausgabeverzeichnis (`LOG_OUTPUT_PATH`)
 
 ## Schnellstart
 
-1. Pfade und Präfixe in `config.core.ps1` prüfen/anpassen.
-2. Zeitraum in `config.ps1` interaktiv eingeben oder über Parameter setzen.
-3. Tool starten:
+1. `.env.example` nach `.env` kopieren und Pfade/Präfixe anpassen.
+2. Umgebungsvariablen laden (z. B. per `dotenv` oder PowerShell-Profil):
 
-```powershell
-.\mainLog.ps1
-```
+   ```powershell
+   Get-Content .env | ForEach-Object {
+     if ($_ -match '^(\w+)=(.*)$') { [Environment]::SetEnvironmentVariable($matches[1], $matches[2]) }
+   }
+   ```
+
+3. Zeitraum in `config.ps1` interaktiv eingeben oder über Parameter setzen.
+4. Tool starten:
+
+   ```powershell
+   .\mainLog.ps1
+   ```
 
 Optional mit Testparametern (kein interaktiver Prompt):
 
@@ -34,24 +42,27 @@ Optional mit Testparametern (kein interaktiver Prompt):
 
 ## Ausgabe
 
-Treffer werden in die Datei geschrieben, die in `config.core.ps1` unter `$outputPath` definiert ist. Zusätzlich erfolgt eine Konsolenausgabe, die im Debug-Modus (`$debugEnabled = $true`) detaillierter ist.
+Treffer werden in die Datei geschrieben, die über `LOG_OUTPUT_PATH` definiert ist. Zusätzlich erfolgt eine Konsolenausgabe, die im Debug-Modus (`$debugEnabled = $true`) detaillierter ist.
 
 ## Projektstruktur
 
 ```text
 LogSearchTool/
-├── mainLog.ps1                # Einstiegspunkt
+├── .env.example               # Beispiel für Umgebungsvariablen
+├── Agent.md                   # Arbeitsanweisungen
+├── ChangeLog.md               # Änderungsübersicht
+├── README.md                  # Projektbeschreibung
 ├── config.ps1                 # Zeitbereich (interaktiv oder per Param)
-├── config.core.ps1            # Pfade, Präfixe, Debug, Ausgabeziel
-├── functions/
-│   ├── common.ps1             # Zentrale Suchlogik
-│   ├── logFunction1.ps1       # DMSQueue
-│   ├── logFunction2.ps1       # Macos.Services.Dms
-│   ├── logFunction3.ps1       # Macos.WebPks.UI.WebApi
-│   ├── logFunction4.ps1       # Printing Logs
-│   ├── logFunction5.ps1       # Macos.Services.Deamon
-│   ├── logFunction6.ps1       # DMSQueue Fehlerdateien (.pdf.dmsqueue)
-│   ├── logFunction7.ps1       # Macos.Shared.Service.Dms
-│   └── logFunction8.ps1       # WebApiProxy
-└── VERSION_2.5.md             # Änderungsübersicht
+├── config.core.ps1            # Pfade, Präfixe, Debug, Ausgabeziel (ENV)
+├── mainLog.ps1                # Einstiegspunkt
+└── functions/
+    ├── common.ps1             # Zentrale Suchlogik
+    ├── logFunction1.ps1       # DMSQueue
+    ├── logFunction2.ps1       # Macos.Services.Dms
+    ├── logFunction3.ps1       # Macos.WebPks.UI.WebApi
+    ├── logFunction4.ps1       # Printing Logs
+    ├── logFunction5.ps1       # Macos.Services.Deamon
+    ├── logFunction6.ps1       # DMSQueue Fehlerdateien (.pdf.dmsqueue)
+    ├── logFunction7.ps1       # Macos.Shared.Service.Dms
+    └── logFunction8.ps1       # WebApiProxy
 ```

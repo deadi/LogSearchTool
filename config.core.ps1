@@ -5,26 +5,24 @@
 # [DEBUG]
 $debugEnabled = $false
 
-# Log-Verzeichnisse
-$logDir1 = "C:\Macos\Logs\DMSQueue"
-$logDir2 = "C:\Macos\Macos.Services.Dms"
-$logDir3 = "C:\Macos\Macos.WebPks.UI.WebApi"        
-$logDir4 = "C:\Macos\Printing\Test\Logs"                   # PROD: C:\Macos\Printing\Logs  # Test: C:\Macos\Printing\Test\Logs
-$logDir5 = "C:\Logs\Macos.Services.Deamon" 
-$logDir6 = "C:\Macos\DMSQueue\Error"
-$logDir7 = "C:\Macos\Macos.Shared.Service.Dms"             # neuer Service seit 09.09.25
-$logDir8 = "C:\Macos\Logs\WebApiProxy"                     # neuer WebApiProxy seit Oktober 2025      
+# Log-Verzeichnisse (aus Umgebungsvariablen)
+$logDir1 = $env:LOG_DIR1
+$logDir2 = $env:LOG_DIR2
+$logDir3 = $env:LOG_DIR3
+$logDir4 = $env:LOG_DIR4
+$logDir5 = $env:LOG_DIR5
+$logDir6 = $env:LOG_DIR6
+$logDir7 = $env:LOG_DIR7
+$logDir8 = $env:LOG_DIR8
 
-# Dateipräfixe
-$logPrefix1 = "Macos.Services.DmsQueue-Log"
-$logPrefix2 = "Macos.Services.Dms-Log"
-$logPrefix3 = "Macos.WebPks.UI.WebApi_"
-$logPrefix4 = "Macos.Printing.WebApi_"
-$logPrefix5 = "Macos.WebPks.Mutation.Deamon_"
-$logPrefix7 = "Macos.Shared.Service.Dms-Log"
-$logPrefix8 = "Macos.WinPks.WebApi.Client.log"
+# Dateipräfixe (aus Umgebungsvariablen)
+$logPrefix1 = $env:LOG_PREFIX1
+$logPrefix2 = $env:LOG_PREFIX2
+$logPrefix3 = $env:LOG_PREFIX3
+$logPrefix4 = $env:LOG_PREFIX4
+$logPrefix5 = $env:LOG_PREFIX5
+$logPrefix7 = $env:LOG_PREFIX7
+$logPrefix8 = $env:LOG_PREFIX8
 
-# Ausgabeziel
-$outputPath = "C:\Users\macosService\Desktop\LogSearchTool\resultsLogSearchTool.txt"
-
-
+# Ausgabeziel (aus Umgebungsvariablen)
+$outputPath = $env:LOG_OUTPUT_PATH

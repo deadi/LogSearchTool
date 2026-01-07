@@ -19,11 +19,11 @@ function Search-Log2 {
 
     $excludeTerms = @(
         "DbName: PKSPAT",
-        "connectionString: Server=S028004A;Database=PKSPAT;MultipleActiveResultSets=true;User Id=MACOS",
-        "connectionStringMaster: Server=S028004A;Database=PKSPATMA;MultipleActiveResultSets=true;User Id=MACOS",
+        "connectionString: Server=S028004A;Database=PKSPAT;MultipleActiveResultSets=true;",
+        "connectionStringMaster: Server=S028004A;Database=PKSPATMA;MultipleActiveResultSets=true;",
         "DbName: TKSPAT",
-        "connectionString: Server=S028004A;Database=TKSPAT;MultipleActiveResultSets=true;User Id=MACOS",
-        "connectionStringMaster: Server=S028004A;Database=TKSPATMA;MultipleActiveResultSets=true;User Id=MACOS",
+        "connectionString: Server=S028004A;Database=TKSPAT;MultipleActiveResultSets=true;",
+        "connectionStringMaster: Server=S028004A;Database=TKSPATMA;MultipleActiveResultSets=true;",
         "Heartbeat"
     )
     Invoke-LogSearchForDates -LogDir $LogDir -LogPrefix $LogPrefix -SearchTerms $searchTerms -ExcludeTerms $excludeTerms

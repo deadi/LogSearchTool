@@ -2,7 +2,7 @@
 # logFunction8.ps1
 # Logsuche fr Log8 mit eigenen Such- und Ausschlussbegriffen
 # neuer WebApi Proxy, seit Okt 2025
-# C:\Macos\Logs\WebApiProxy\Macos.WinPks.WebApi.Client.log20251002.txt
+# \WebApiProxy
 # -------------------------------------------------------------------
 
 function Search-Log8 {

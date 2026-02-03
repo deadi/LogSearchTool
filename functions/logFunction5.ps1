@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction5.ps1
 # Logsuche fr Log5 mit eigenen Such- und Ausschlussbegriffen
-# C:\Logs\Macos.Services.Deamon
+# Services.Deamon
 # -------------------------------------------------------------------
 
 function Search-Log5 {
@@ -19,7 +19,7 @@ function Search-Log5 {
     )
     $excludeTerms = @(
         "In GetForFaktTextNoAndValidDate konnten keine Werte zu Berechnung des BVG Mindestlohn ermittelt werden",
-        "Warning in ConfigurationService => GetBvgMindestlohn - In der Master DB Tabelle LbiFakt konnte fr NLbiFaktTxtNr 0 und GltigAb",
+        "Warning in ConfigurationService => GetBvgMindestlohn - ",
         "BvgExchangeConnectorService",     
         "Heartbeat"
     )

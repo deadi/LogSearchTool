@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction4.ps1
 # Logsuche fr Log mit eigenen Such- und Ausschlussbegriffen
-# C:\Macos\Printing\Logs
+# \Printing\Logs
 # -------------------------------------------------------------------
 
 function Search-Log4 {

@@ -1,7 +1,6 @@
 # -------------------------------------------------------------------
 # logFunction1.ps1
 # Logsuche fr Log mit eigenen Such- und Ausschlussbegriffen
-# C:\Macos\Logs\DMSQueue
 # -------------------------------------------------------------------
 
 function Search-Log1 {
@@ -17,12 +16,12 @@ function Search-Log1 {
         "[INF] listenting"       
     )
     $excludeTerms = @(
-        "DbName: PKSPAT",
-        "connectionString: Server=S028004A;Database=PKSPAT;MultipleActiveResultSets=true;",
-        "connectionStringMaster: Server=S028004A;Database=PKSPATMA;MultipleActiveResultSets=true;",
-        "DbName: TKSPAT",
-        "connectionString: Server=S028004A;Database=TKSPAT;MultipleActiveResultSets=true;",
-        "connectionStringMaster: Server=S028004A;Database=TKSPATMA;MultipleActiveResultSets=true;",
+        "DbName: P",
+        "connectionString: Server=S",
+        "connectionStringMaster: Server=S",
+        "DbName: T",
+        "connectionString: Server=S",
+        "connectionStringMaster: S",
         "HttpMessageHandler expired after",
         "Starting HttpMessageHandler cleanup cycle with",
         "Ending HttpMessageHandler cleanup cycle after",

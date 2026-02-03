@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction6.ps1
-# Prüfung von DMSQueue-Fehlerdateien (.pdf.dmsqueue)
-# C:\Macos\DMSQueue\Error
+# PrÃ¼fung von DMSQueue-Fehlerdateien (.pdf.dmsqueue)
+# \DMSQueue\Error
 # -------------------------------------------------------------------
 
 function Search-Log6 {
@@ -23,7 +23,7 @@ function Search-Log6 {
             $fileDateString = $matches[1]
 
             if ($logDatesyyyy_MM_dd -contains $fileDateString) {
-                $msg = "[+] Fehlerdatei für ${fileDateString}: $($file.Name)"
+                $msg = "[+] Fehlerdatei fÃ¼r ${fileDateString}: $($file.Name)"
                 Write-Host "`n$msg" -ForegroundColor Yellow
                 Add-Content -Path $outputPath -Value $msg
 
@@ -46,3 +46,4 @@ function Search-Log6 {
         }
     }
 }
+

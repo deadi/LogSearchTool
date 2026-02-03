@@ -1,6 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction1.ps1
 # Logsuche fr Log mit eigenen Such- und Ausschlussbegriffen
+# \Logs\DMSQueue
 # -------------------------------------------------------------------
 
 function Search-Log1 {

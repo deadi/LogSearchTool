@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction2.ps1
 # Logsuche fr Log2 mit eigenen Such- und Ausschlussbegriffen
-# C:\Macos\Macos.Services.Dms
+# Services.Dms
 # -------------------------------------------------------------------
 
 function Search-Log2 {

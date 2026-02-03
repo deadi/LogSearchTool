@@ -57,12 +57,12 @@ LogSearchTool/
 ├── mainLog.ps1                # Einstiegspunkt
 └── functions/
     ├── common.ps1             # Zentrale Suchlogik
-    ├── logFunction1.ps1       # DMSQueue
-    ├── logFunction2.ps1       # Macos.Services.Dms
-    ├── logFunction3.ps1       # Macos.WebPks.UI.WebApi
-    ├── logFunction4.ps1       # Printing Logs
-    ├── logFunction5.ps1       # Macos.Services.Deamon
-    ├── logFunction6.ps1       # DMSQueue Fehlerdateien (.pdf.dmsqueue)
-    ├── logFunction7.ps1       # Macos.Shared.Service.Dms
-    └── logFunction8.ps1       # WebApiProxy
+    ├── logFunction1.ps1
+    ├── logFunction2.ps1
+    ├── logFunction3.ps1
+    ├── logFunction4.ps1
+    ├── logFunction5.ps1
+    ├── logFunction6.ps1
+    ├── logFunction7.ps1
+    └── logFunction8.ps1
 ```

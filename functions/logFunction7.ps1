@@ -1,8 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction7.ps1
 # Logsuche fr Log7 mit eigenen Such- und Ausschlussbegriffen
-# neuer Shared Service, seit 09.09.25
-# C:\Macos\Macos.Shared.Service.Dms
+# Shared.Service.Dms
 # -------------------------------------------------------------------
 
 function Search-Log7 {

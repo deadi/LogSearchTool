@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------
 # logFunction3.ps1
 # Logsuche fr Log mit eigenen Such- und Ausschlussbegriffen
-# WebPks.UI.WebApi
+# Web.UI.WebApi
 # -------------------------------------------------------------------
 
 function Search-Log3 {

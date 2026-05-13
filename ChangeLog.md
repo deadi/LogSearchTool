@@ -40,7 +40,7 @@
 - **Datum:** 2025-07-29
 - **Autor:** AE
 - **Änderungen:**
-  - Neue LogDir-Variable für `.pdf.dmsqueue`-Dateien: `$logDir6 = "C:\Macos\DMSQueue\Error"`.
+  - Neue LogDir-Variable für `.pdf.dmsqueue`-Dateien: 
   - Wiederverwendbare Datums-Arrays eingeführt:
     - `$logDatesyyyyMMdd` (z. B. `20250729`)
     - `$logDatesyyyy_MM_dd` (z. B. `2025-07-29`)

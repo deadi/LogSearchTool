@@ -49,7 +49,6 @@ Treffer werden in die Datei geschrieben, die über `LOG_OUTPUT_PATH` definiert i
 ```text
 LogSearchTool/
 ├── .env.example               # Beispiel für Umgebungsvariablen
-├── Agent.md                   # Arbeitsanweisungen
 ├── ChangeLog.md               # Änderungsübersicht
 ├── README.md                  # Projektbeschreibung
 ├── config.ps1                 # Zeitbereich (interaktiv oder per Param)
